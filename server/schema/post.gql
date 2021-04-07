@@ -1,0 +1,22 @@
+# Post made by user
+
+enum POST_STATE {
+    DRAFT
+    LIVE
+}
+
+type Post {
+    _id: ID
+    state: POST_STATE
+    creator: User
+    media: [Media] | Media
+    tags: [String]
+    heading: String
+    description: String
+    views: {
+        amount: Number
+        users: [ID]
+    }
+    token_id: String
+    initial_quantity: Number
+}

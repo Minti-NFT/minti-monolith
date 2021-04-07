@@ -1,0 +1,9 @@
+# Record actions that users take on platform
+
+type Action {
+	_id: ID
+	origin: User # user who sparked the action
+	heading: String
+	description: String
+	occurance: String # convert to date
+}

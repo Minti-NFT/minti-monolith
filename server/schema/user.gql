@@ -1,0 +1,14 @@
+type User {
+    wallets: [String]
+    transactions: [Transaction]
+    actions: [Action]
+    posts: [Post]
+    account: {
+        username: String
+        twitter: String
+        insta: String
+    }
+    media: [Media]
+    account_age: Number
+    trophy_case: TrophyCase # single or multiple
+}

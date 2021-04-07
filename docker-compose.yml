@@ -1,0 +1,21 @@
+services:
+    server:
+        build:
+            context: ./
+            dockerfile: dockerfile.server
+        volumes:
+            - ./server/:/app/
+            - /app/node_modules
+        ports:
+            - "3001:3001"
+        command: yarn nodemon init.js
+    client:
+        build:
+            context: ./
+            dockerfile: dockerfile.client
+        volumes:
+            - ./client/:/app/
+            - /app/node_modules
+        ports:
+            - "3000:3000"
+        command: yarn start

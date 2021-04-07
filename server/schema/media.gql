@@ -1,0 +1,28 @@
+# Media content for quick grab and association on client. Will change
+
+enum FILE_TYPE {
+    MP4
+    JPG
+    PNG
+    JPEG
+    GIF
+}
+
+type Media {
+    _id: ID
+    origin: User # id of user who uploaded
+    files: {
+        prior: {
+            type: FILE_TYPE
+            location: String
+        }
+        post: {
+            type: FILE_TYPE
+            location: String
+        }
+        is_converted: Boolean
+    }
+    access_code: String # unique code for media content
+    alt: String
+    token_id: String
+}

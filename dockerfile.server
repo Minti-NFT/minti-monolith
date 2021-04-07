@@ -1,0 +1,8 @@
+FROM node:14
+WORKDIR /app
+COPY ./server/package*.json ./
+COPY ./server/yarn.lock ./
+RUN yarn install
+COPY ./server/ .
+EXPOSE 3001
+CMD ["yarn", "init.js"]

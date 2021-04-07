@@ -1,0 +1,18 @@
+# Record transactions on the platform.
+# May just throw this out and use etherscan or a similar system.
+# Would resort to this based on etherscan limitations
+
+enum TRANSACTION_TYPE {
+	REFUND
+	SALE
+	LIST
+	TRANSFER
+}
+
+type Transaction {
+	_id: ID
+	transaction_type: TRANSACTION_TYPE
+	origin: User
+	destination: User
+	media: Media
+}

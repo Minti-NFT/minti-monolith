@@ -1,0 +1,13 @@
+# Collection of user's NFTs
+
+type TrophyCase {
+	_id: ID
+	origin: User
+	name: String
+	description: String
+	posts: [Post]
+    favorites: {
+        amount: Number
+        users: [User]
+    }
+}
