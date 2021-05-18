@@ -1,11 +1,34 @@
-😎 - Prathik
-
 04.05.21
-- containerized server/client 😎
-- setup boilerplate for server/client 😎
-- gql schema defs (Users, Actions, Posts, Media, Transactions, Trophycases) 😎
+- containerized server/client
+- setup boilerplate for server/client
+- gql schema defs (Users, Actions, Posts, Media, Transactions, Trophycases)
 
 04.06.21
-- topbar component for desktop view 😎
-- 
-- 
+- topbar component for desktop view
+
+04.07.21
+- connect page
+- metamask, formatic, coinbase auth
+- refined topbar
+
+04.08.21 - 04.09
+- mint page
+
+04.10.21 - 04.11
+- touch up existing components
+
+04.12.21 - 04.14
+- router implementation
+- compose page
+
+04.15.21 - 04.27
+- component redesign
+- contract layouts (scrapped)
+- backend structure
+
+04.28.21 - 05.10
+- component touchups
+
+05.11.21 - 05.17
+- finalizing components and placements
+
