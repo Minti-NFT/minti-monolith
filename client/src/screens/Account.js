@@ -174,7 +174,11 @@ const Account = () => {
 						}}
 					>
 						<p>0x97a57e504f8d...443b</p>
-						<img src={Copy} alt="copy" />
+						<img
+							src={Copy}
+							alt="copy"
+							style={{ cursor: "pointer" }}
+						/>
 					</div>
 				</div>
 				<p style={{ width: "500px", color: "#F2F2F7", margin: "auto" }}>
@@ -187,6 +191,7 @@ const Account = () => {
 						display: "flex",
 						alignItems: "center",
 						justifyContent: "center",
+						marginTop: "10px",
 					}}
 				>
 					<div
@@ -194,8 +199,8 @@ const Account = () => {
 							display: "flex",
 							alignItems: "center",
 							justifyContent: "center",
-							marginLeft: "10px",
-							marginRight: "10px",
+							margin: "10px",
+							cursor: "pointer",
 						}}
 					>
 						<img src={InstagramLogo} alt="Instagram" />
@@ -204,6 +209,8 @@ const Account = () => {
 								color: "#F2F2F7",
 								fontWeight: "600",
 								marginLeft: "5px",
+								marginTop: "0px",
+								marginBottom: "0px",
 							}}
 						>
 							nftmaker
@@ -214,8 +221,8 @@ const Account = () => {
 							display: "flex",
 							alignItems: "center",
 							justifyContent: "center",
-							marginLeft: "10px",
-							marginRight: "10px",
+							margin: "10",
+							cursor: "pointer",
 						}}
 					>
 						<img src={WebLinkLogo} alt="website" />
@@ -224,6 +231,8 @@ const Account = () => {
 								color: "#F2F2F7",
 								fontWeight: "600",
 								marginLeft: "5px",
+								marginTop: "0px",
+								marginBottom: "0px",
 							}}
 						>
 							nftmaker.com
@@ -253,6 +262,7 @@ const Account = () => {
 							fontWeight: "600",
 							background:
 								"linear-gradient(154.04deg, #FFFFFF -27.56%, rgba(255, 255, 255, 0) 81.94%), radial-gradient(99.9% 225.32% at 82.94% 125%, #53CEF4 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(264.51deg, #B7FFDB 2.53%, #93E9BE 96.02%)",
+							cursor: "pointer",
 						}}
 					>
 						<img
@@ -273,6 +283,7 @@ const Account = () => {
 							padding: "5px 20px",
 							fontWeight: "600",
 							backgroundColor: "rgba(60, 60, 67, 0.6)",
+							cursor: "pointer",
 						}}
 					>
 						<p>Edit profile</p>
@@ -287,6 +298,7 @@ const Account = () => {
 							display: "flex",
 							alignItems: "center",
 							justifyContent: "center",
+							cursor: "pointer",
 						}}
 					>
 						<img src={Share} alt="Share" />

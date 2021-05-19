@@ -19,6 +19,7 @@ function App() {
 				<Route path="/connect" component={Connect} />
 				<Route path="/account" component={Account} />
 				<Route path="/compose" component={Compose} />
+				<Route path="/case" component={BaseScreen} />
 				<Route path="/settings" component={BaseScreen} />
 			</Switch>
 		</Router>
