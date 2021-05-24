@@ -1,8 +1,26 @@
 /*
  */
 
-const validatePost = (ownerId, postInfo) => {
-	return true;
+import { PostModel } from "../../models/post";
+
+const validatePost = (postInfo) => {
+	let hasTwitter = postInfo.post_to.includes("TWITTER");
+	let hasInstagram = postInfo.post_to.includes("INSTAGRAM");
+
+	if (!hasInstagram || !hasTwitter) {
+		return false;
+	}
+
+	if (
+		(hasTwitter && postInfo.text.length > 280) ||
+		postInfo.text.length > 2200
+	) {
+		return false;
+	}
+
+	if (!postInfo.asset_address || !postInfo.asset_id) {
+		return false;
+	}
 };
 
 const publishToTwitter = (ownerId, postInfo) => {
@@ -13,27 +31,37 @@ const publishToInstagram = (ownerId, postInfo) => {
 	return true;
 };
 
-const publishTo = (owerId, outlet, postInfo) => {
+const publishTo = (ownerId, outlet, postInfo) => {
 	switch (outlet) {
 		case "Twitter":
 			return publishToTwitter(ownerId, postInfo);
 		case "Instagram":
 			return publishToInstagram(ownerId, postInfo);
 		default:
-			return;
+			return false;
 	}
 };
 
-const publish = (ownerId, postInfo) => {
-	if (validatePost(postInfo) === false) {
+const publish = async (ownerId, postId) => {
+	try {
+		let owner = await AccountModel.findById(ownerId).exec();
+		let post = await PostModel.findById(powerId).exec();
+		let postIndex = owner.drafts.indexOf(postId);
+
+		if (!owner && !post && !postIndex && !validatePost(post)) return false;
+
+		for (const outlet in post.outlets) {
+			if (!publishTo(ownerId, outlet, post)) return false;
+		}
+
+		owner.drafts.splice(postIndex, 1);
+		await PostModel.deleteOne({ _id: postId }).exec();
+		await owner.drafts.save();
+
+		return true;
+	} catch (err) {
 		return false;
 	}
-
-	for (const outlet in postInfo.outlets) {
-		if (publshTo(outlet, postInfo) !== true) {
-			return false;
-		}
-	}
 };
 
-export default (ownerId, outlets, postInfo) => {};
+export default async (ownerId, postInfo) => await publish(ownerId, postInfo);
