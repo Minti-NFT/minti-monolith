@@ -7,11 +7,6 @@ const HistorySchema = new Schema({
 	actor: { type: Schema.Types.ObjectId, required: true },
 });
 
-const PropertySchema = new Schema({
-	name: { type: String, required: true },
-	value: { type: mongoose.Types.Mixed, required: true },
-});
-
 const ListingSchema = new Schema({
 	current_owner: { type: Schema.Types.ObjectId, required: true },
 	token_address: { type: String, required: true },
@@ -20,7 +15,7 @@ const ListingSchema = new Schema({
 	listed_at: { type: Date, default: Date.now },
 	listing_type: { type: String, required: true },
 	event_log: { type: [HistorySchema], default: [] },
-	properties: { type: [PropertySchema], default: [] },
+	ipfs_hash: { type: String, required: true },
 });
 
 const ListingModel = mongoose.model("listings", ListingSchema);

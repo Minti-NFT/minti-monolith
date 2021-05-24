@@ -388,7 +388,7 @@ const Mint = () => {
 									style={{ margin: "0px" }}
 									className="prm-txt-clr"
 								>
-									Properties
+									Attributes
 								</h3>
 								<p style={{ margin: "0px" }}>(Optional)</p>
 							</div>
