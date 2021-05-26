@@ -1,15 +1,17 @@
 /*
  */
+const chalk = require("chalk");
 
 const { AccountModel } = require("../../models/account");
 
 const register = async (address) => {
 	try {
-		await AccountModel.create({ address: address }).exec();
-		return AccountModel._id;
+		const account = await AccountModel.create({ address: address });
+		return account._id;
 	} catch (err) {
+		console.log(chalk.red(err));
 		return false;
 	}
 };
 
-export default async (address) => register(address);
+module.exports = async (address) => register(address);

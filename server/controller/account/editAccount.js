@@ -12,4 +12,4 @@ const getAccount = async (accountId) => {
 	}
 };
 
-export default async (accountId) => await getAccount(accountId);
+module.exports = async (accountId) => await getAccount(accountId);

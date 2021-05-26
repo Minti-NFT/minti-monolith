@@ -1,5 +1,6 @@
 /*
  */
+const chalk = require("chalk");
 
 const { AccountModel } = require("../../models/account");
 
@@ -8,8 +9,9 @@ const getAccount = async (accountId) => {
 		const account = await AccountModel.findById(accountId).exec();
 		return account;
 	} catch (err) {
+		console.log(chalk.red(err));
 		return false;
 	}
 };
 
-export default async (accountId) => await getAccount(accountId);
+module.exports = async (accountId) => await getAccount(accountId);

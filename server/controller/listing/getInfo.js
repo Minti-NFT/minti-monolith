@@ -17,5 +17,5 @@ const getInfo = async (listingId, assetAddress) => {
 	}
 };
 
-export default async (listingId, assetAddress) =>
+module.exports = async (listingId, assetAddress) =>
 	await getInfo(listingId, assetAddress);

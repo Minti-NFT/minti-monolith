@@ -1,1 +1,1 @@
-export default (ownerId) => {};
+module.exports = async (ownerId) => {};

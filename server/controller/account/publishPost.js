@@ -1,7 +1,7 @@
 /*
  */
 
-import { PostModel } from "../../models/post";
+const { PostModel } = require("../../models/post");
 
 const validatePost = (postInfo) => {
 	let hasTwitter = postInfo.post_to.includes("TWITTER");
@@ -37,6 +37,8 @@ const publishTo = (ownerId, outlet, postInfo) => {
 			return publishToTwitter(ownerId, postInfo);
 		case "Instagram":
 			return publishToInstagram(ownerId, postInfo);
+		case "":
+			return true;
 		default:
 			return false;
 	}
@@ -64,4 +66,4 @@ const publish = async (ownerId, postId) => {
 	}
 };
 
-export default async (ownerId, postInfo) => await publish(ownerId, postInfo);
+module.exports = async (ownerId, postInfo) => await publish(ownerId, postInfo);
