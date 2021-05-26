@@ -1,0 +1,22 @@
+{
+	"name": "Minti Test 2",
+	"description": "Second NFT for Minti test",
+	"attributes": [
+		{
+			"trait_type": "Background",
+			"value": "dark_gray"
+		},
+		{
+			"trait_type": "Primary",
+			"value": "teal"
+		},
+		{
+			"trait_type": "Secondary",
+			"value": "salmon"
+		},
+		{
+			"trait_type": "Tertiary",
+			"value": "mint"
+		}
+	]
+}
