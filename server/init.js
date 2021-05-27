@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const chalk = require("chalk");
 
 const accountRouter = require("./routes/account");
+const listingRouter = require("./routes/listing");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,6 +25,7 @@ mongoose
 	});
 
 app.use("/account", accountRouter);
+app.use("/listing", listingRouter);
 
 app.listen(8080, () => {
 	console.log(chalk.green("Server running on port 8080"));

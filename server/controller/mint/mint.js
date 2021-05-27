@@ -1,16 +1,10 @@
 const { ethers } = require("ethers");
 const fs = require("fs");
 const chalk = require("chalk");
-const path = require("path");
 
 const { pinata } = require("../../utils");
 const { AccountModel } = require("../../models/account");
 const { SINGLE_ASSET_CONTRACT } = require("../contract/getContracts");
-
-const WALLET_ADDRESS_1 = "0xbA842b7DA417Ba762D75e8F99e11c2980a8F8051";
-
-const test_data_1 = require("../../test_data_1.json");
-const test_image_1 = path.join(__dirname, "../../test_image_1.png");
 
 const uploadImage = async (image) => {
 	try {
@@ -36,7 +30,7 @@ const uploadMetadata = async (metadata) => {
 const pushToPinata = async (metadata, image) => {
 	try {
 		const asset_uri = await uploadImage(image);
-		metadata["image"] = asset_uri;
+		metadata["image"] = "ipfs://" + asset_uri;
 		const metadata_uri = await uploadMetadata(metadata);
 		if (metadata_uri) return { metadata_uri, asset_uri };
 		//throw "unable to push to pinata";
@@ -76,12 +70,13 @@ const mint = async (targetId, metadata, image) => {
 		return true;
 	} catch (err) {
 		console.log(chalk.red(err));
+		return false;
 	}
 };
 
 //mint(WALLET_ADDRESS_1, test_data_1, test_image_1);
 
-export default async (targetId, metadata, image) =>
+module.exports = async (targetId, metadata, image) =>
 	mint(targetId, metadata, image);
 
 /*

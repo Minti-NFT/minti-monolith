@@ -11,11 +11,13 @@ const publishPost = require("../controller/account/publishPost");
 const register = require("../controller/account/register");
 const retrieveAssets = require("../controller/account/retrieveAssets");
 
-accountRouter.post("/compose", async (req, res) => {
+accountRouter.put("/compose", async (req, res) => {
 	//✅
 	try {
 		const isComposed = await composePost(req.headers._id, req.body);
-		return res.status(200).send({ success: true, data: isComposed });
+		if (isComposed)
+			return res.status(200).send({ success: true, data: isComposed });
+		throw "";
 	} catch (err) {
 		console.log(chalk.red(err));
 		return res.status(400).send({
@@ -46,7 +48,9 @@ accountRouter.patch("/account", async (req, res) => {
 accountRouter.get("/account", async (req, res) => {
 	try {
 		const account = await getAccount(req.headers._id);
-		return res.status(200).send({ success: true, data: account });
+		if (account)
+			return res.status(200).send({ success: true, data: account });
+		throw "";
 	} catch (err) {
 		console.log(chalk.red(err));
 		return res.status(400).send({
@@ -58,8 +62,10 @@ accountRouter.get("/account", async (req, res) => {
 
 accountRouter.post("/publish", async (req, res) => {
 	try {
-		const isPublished = await publishPost(req.headers._id, req.body);
-		return res.status(200).send({ success: true, data: isPublished });
+		const published = await publishPost(req.headers._id, req.body);
+		if (published)
+			return res.status(200).send({ success: true, data: published });
+		throw "";
 	} catch (err) {
 		console.log(chalk.red(err));
 		return res.status(400).send({
