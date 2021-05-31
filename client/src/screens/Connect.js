@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,6 +10,9 @@ import Web3 from "web3";
 
 import AppLogo from "../assets/Logos/Logo_App Icon.png";
 import TextLogo from "../assets/Logos/Minti Logo_Logo-Brand Dark.svg";
+
+import ConnectComponents from "../styles/screens/Connect";
+import ConnectButton from "../components/Connect/Button";
 
 import MetamaskIcon from "../assets/Icons-svg/Wallets/Metamask.png";
 import FortmaticIcon from "../assets/Icons-svg/Wallets/Fortmatic.png";
@@ -98,100 +99,68 @@ const authCoinbase = async () => {
 };
 */
 
-const authMetamask = () => {};
-const authFortmatic = () => {};
-const authCoinbase = () => {};
+const authMetamask = () => {
+	notify("This authentication method is not currently supported!");
+};
+const authFortmatic = () => {
+	notify("This authentication method is not currently supported!");
+};
+const authCoinbase = () => {
+	notify("This authentication method is not currently supported!");
+};
+const authWalletConnect = () => {
+	notify("This authentication method is not currently supported!");
+};
+const authMyEtherWallet = () => {
+	notify("This authentication method is not currently supported!");
+};
 
-const FlexedContainer = styled.div`
-	display: flex;
-`;
-
-const Wrapper = styled(FlexedContainer)`
-	height: 100vh;
-	max-height: 100vh;
-	overflow-y: auto;
-`;
-
-const LogoContainer = styled(FlexedContainer)`
-	padding: 20px;
-`;
-
-const TextContainer = styled.img`
-	height: calc(48px * 0.85);
-`;
-
-const IconContainer = styled.img`
-	height: calc(50px * 0.85);
-`;
-
-const Left = styled.div`
-	width: 20%;
-	background-color: rgba(47, 233, 190, 1);
-`;
-
-const Right = styled(FlexedContainer)`
-	width: 80%;
-	background-color: #1c1c1e;
-	align-items: center;
-`;
-
-const ConnectionButton = styled.div`
-	border-radius: 40px;
-	width: 100%;
-	cursor: pointer;
-	border: 1px solid #2c2c2e;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	margin: 10px 0px;
-
-	:hover {
-		border-color: rgba(47, 233, 190, 1);
-	}
-
-	transition: 0.5s;
-`;
-
-const ConnectionIcon = styled.img`
-	position: absolute;
-	margin: 0px 10px;
-	left: 0;
-	height: 40px;
-`;
-
-const ConnectionText = styled.p`
-	color: white;
-	font-weight: 600;
-	text-align: center;
-`;
-
-const Header = styled.p`
-	font-weight: 800;
-	font-size: 33px;
-	color: white;
-	margin-bottom: 10px;
-	margin-top: 10px;
-`;
-
-const Desc = styled.p`
-	color: #aeaeb2;
-	font-size: 15px;
-	font-weight: 600;
-`;
+const Connections = [
+	{
+		name: "Metamask",
+		src: MetamaskIcon,
+		onClick: authMetamask,
+	},
+	{
+		name: "Fortmatic",
+		src: FortmaticIcon,
+		onClick: authFortmatic,
+	},
+	{
+		name: "Coinbase Wallet",
+		src: CoinbaseIcon,
+		onClick: authCoinbase,
+	},
+	{
+		name: "WalletConnect",
+		src: WalletConnectIcon,
+		onClick: authWalletConnect,
+	},
+	{
+		name: "MyEtherWallet",
+		src: MyEtherWalletIcon,
+		onClick: authMyEtherWallet,
+	},
+];
 
 const Connect = () => {
 	return (
-		<Wrapper>
-			<Left>
-				<FlexedContainer>
-					<LogoContainer>
-						<IconContainer src={AppLogo} alt="Logo" />
-						<TextContainer src={TextLogo} alt="Minti" />
-					</LogoContainer>
-				</FlexedContainer>
-			</Left>
-			<Right>
+		<ConnectComponents.Wrapper>
+			<ConnectComponents.Left>
+				<ConnectComponents.FlexedContainer>
+					<ConnectComponents.LogoContainer>
+						<ConnectComponents.IconContainer
+							src={AppLogo}
+							alt="Logo"
+						/>
+						<ConnectComponents.TextContainer
+							src={TextLogo}
+							alt="Minti"
+						/>
+					</ConnectComponents.LogoContainer>
+				</ConnectComponents.FlexedContainer>
+			</ConnectComponents.Left>
+			<ConnectComponents.Right>
 				<div style={{ maxWidth: "330px", marginLeft: "120px" }}>
 					<div
 						style={{
@@ -209,49 +178,27 @@ const Connect = () => {
 							Go back
 						</p>
 					</div>
-					<Header>Connect your wallet</Header>
-					<Desc>
+					<ConnectComponents.Header>
+						Connect your wallet
+					</ConnectComponents.Header>
+					<ConnectComponents.Desc>
 						Connect with one of the available wallet providers or
 						create a new wallet
 						<br />
 						<span className="prm-txt-clr">What is a wallet?</span>
-					</Desc>
+					</ConnectComponents.Desc>
 					<div>
-						<ConnectionButton
-							onClick={() => {
-								authMetamask();
-							}}
-						>
-							<ConnectionIcon src={MetamaskIcon} />
-							<ConnectionText>Metamask</ConnectionText>
-						</ConnectionButton>
-						<ConnectionButton
-							onClick={() => {
-								authFortmatic();
-							}}
-						>
-							<ConnectionIcon src={FortmaticIcon} />
-							<ConnectionText>Fortmatic</ConnectionText>
-						</ConnectionButton>
-						<ConnectionButton
-							onClick={() => {
-								authCoinbase();
-							}}
-						>
-							<ConnectionIcon src={CoinbaseIcon} />
-							<ConnectionText>Coinbase Wallet</ConnectionText>
-						</ConnectionButton>
-						<ConnectionButton>
-							<ConnectionIcon src={WalletConnectIcon} />
-							<ConnectionText>WalletConnect</ConnectionText>
-						</ConnectionButton>
-						<ConnectionButton>
-							<ConnectionIcon src={MyEtherWalletIcon} />
-							<ConnectionText>MyEtherWallet</ConnectionText>
-						</ConnectionButton>
+						{Connections.map((el, i) => (
+							<ConnectButton
+								key={i}
+								name={el.name}
+								src={el.src}
+								onClick={el.onClick}
+							/>
+						))}
 					</div>
 				</div>
-			</Right>
+			</ConnectComponents.Right>
 			<ToastContainer
 				position="bottom-right"
 				autoClose={5000}
@@ -259,11 +206,11 @@ const Connect = () => {
 				newestOnTop={false}
 				closeOnClick
 				rtl={false}
-				pauseOnFocusLoss
+				pauseOnFocusLoss={false}
 				draggable
 				pauseOnHover={false}
 			/>
-		</Wrapper>
+		</ConnectComponents.Wrapper>
 	);
 };
 

@@ -1,336 +1,81 @@
-import styled from "styled-components";
-
 import BaseScreen from "./BaseScreen";
 
 import InstagramLogo from "../assets/Icons-svg/Instagram/IG-Light grey 2.svg";
 import WebLinkLogo from "../assets/Icons-svg/Weblink/Website-Light grey 2.svg";
-
-import SavedInactive from "../assets/Icons-svg/Save/Saved-Nav bar light.svg";
-import SavedActive from "../assets/Icons-svg/Save/Saved-Brand primary.svg";
 
 import TrophyButton from "../assets/Icons-svg/Trophy/Trophy-Button.svg";
 
 import Copy from "../assets/Icons-svg/Copy link/Dark mode-Copy link.svg";
 import Share from "../assets/Icons-svg/Share/Share-Nav bar light.svg";
 
-const NavEl = (props) => {
-	return (
-		<div style={{ position: "relative" }}>
-			<p
-				style={{
-					color: props.active ? "#93E9BE" : "#AEAEB2",
-					marginBottom: "5px",
-				}}
-			>
-				{props.name}
-			</p>
-			<div
-				style={{
-					position: "absolute",
-					left: "50%",
-				}}
-			>
-				<div
-					style={{
-						position: "relative",
-						width: "40px",
-						height: "2.5px",
-						left: "-50%",
-						backgroundColor: "#93E9BE",
-						display: props.active ? "" : "none",
-					}}
-				></div>
-			</div>
-		</div>
-	);
-};
+import NavEl from "../components/Account/NavEl";
+import GalleryEl from "../components/Account/GalleryEl";
 
-const GalleryEl = (props) => {
-	return (
-		<div
-			style={{
-				borderRadius: "12px",
-				border: "1px solid #3A3A3C",
-				padding: "10px",
-				margin: "1%",
-			}}
-		>
-			<div>
-				<img
-					src={props.src}
-					alt={props.name}
-					style={{ height: "230px", width: "230px" }}
-				/>
-			</div>
-			<div>
-				<h3
-					style={{
-						color: "#F2F2F7",
-						marginTop: "10px",
-						marginBottom: "5px",
-						padding: "0px",
-					}}
-				>
-					{props.name}
-				</h3>
-				<div
-					style={{
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "space-between",
-					}}
-				>
-					<div style={{ display: "flex", alignItems: "center" }}>
-						<p
-							style={{
-								color: "#93E9BE",
-								fontWeight: "600",
-								margin: "0px",
-								marginRight: "10px",
-							}}
-						>
-							{props.price}
-						</p>
-						<p style={{ color: "#8E8E93", margin: "0px" }}>
-							{props.stock} of {props.quantity}
-						</p>
-					</div>
-					<div>
-						<img
-							src={props.saved ? SavedActive : SavedInactive}
-							alt="save"
-						/>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-};
+import AccountComponents from "../styles/screens/Account";
 
 const Account = () => {
 	return (
 		<BaseScreen>
 			<div className="info">
-				<div
-					className="banner"
-					style={{
-						backgroundColor: "#93E9BE",
-						width: "100%",
-						height: "200px",
-					}}
-				></div>
-				<div
-					className="profile-picture"
-					style={{
-						width: "150px",
-						height: "150px",
-						borderRadius: "50%",
-						margin: "auto",
-						marginTop: "-75px",
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-						backgroundColor: "#1C1C1E",
-					}}
-				>
-					<div
-						style={{
-							backgroundColor: "#93E9BE",
-							position: "relative",
-							height: "95%",
-							width: "95%",
-							borderRadius: "50%",
-						}}
-					></div>
-				</div>
-				<h2
-					style={{
-						color: "white",
-						textAlign: "center",
-						fontSize: "250%",
-						marginTop: "10px",
-						marginBottom: "0px",
-					}}
-				>
+				<AccountComponents.Banner />
+				<AccountComponents.PPContainer className="profile-picture">
+					<AccountComponents.PPInner />
+				</AccountComponents.PPContainer>
+				<AccountComponents.Username>
 					NFTMaker
-				</h2>
-				<div
-					style={{
-						margin: "auto",
-						width: "200px",
-						fontSize: "90%",
-					}}
-				>
-					<div
-						style={{
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "space-around",
-							color: "#ABABAB",
-							textAlign: "center",
-							fontWeight: "600",
-							marginTop: "-5px",
-							marginBottom: "10px",
-						}}
-					>
+				</AccountComponents.Username>
+				<AccountComponents.InfoContainer>
+					<AccountComponents.AddressContainer>
 						<p>0x97a57e504f8d...443b</p>
-						<img
-							src={Copy}
-							alt="copy"
-							style={{ cursor: "pointer" }}
-						/>
-					</div>
-				</div>
-				<p style={{ width: "500px", color: "#F2F2F7", margin: "auto" }}>
+						<AccountComponents.CopyImage src={Copy} alt="copy" />
+					</AccountComponents.AddressContainer>
+				</AccountComponents.InfoContainer>
+				<AccountComponents.Description>
 					Short description/bio. Lorem ipsum dolor sit amet, consect
 					etur adipiscing elit. Amet lobortis sapien sl, venenatis
 					egestas.
-				</p>
-				<div
-					style={{
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-						marginTop: "10px",
-					}}
-				>
-					<div
-						style={{
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "center",
-							margin: "10px",
-							cursor: "pointer",
-						}}
-					>
+				</AccountComponents.Description>
+				<AccountComponents.SocialContainer>
+					<AccountComponents.SocialElementContainer>
 						<img src={InstagramLogo} alt="Instagram" />
-						<p
-							style={{
-								color: "#F2F2F7",
-								fontWeight: "600",
-								marginLeft: "5px",
-								marginTop: "0px",
-								marginBottom: "0px",
-							}}
-						>
+						<AccountComponents.SocialElementText>
 							nftmaker
-						</p>
-					</div>
-					<div
-						style={{
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "center",
-							margin: "10",
-							cursor: "pointer",
-						}}
-					>
+						</AccountComponents.SocialElementText>
+					</AccountComponents.SocialElementContainer>
+					<AccountComponents.SocialElementContainer>
 						<img src={WebLinkLogo} alt="website" />
-						<p
-							style={{
-								color: "#F2F2F7",
-								fontWeight: "600",
-								marginLeft: "5px",
-								marginTop: "0px",
-								marginBottom: "0px",
-							}}
-						>
+						<AccountComponents.SocialElementText>
 							nftmaker.com
-						</p>
-					</div>
-				</div>
-				<div
-					style={{
-						height: "36px",
-						display: "flex",
-						justifyContent: "space-between",
-						alignItems: "center",
-						width: "350px",
-						margin: "auto",
-						padding: "20px 0px",
-					}}
-				>
-					<div
-						style={{
-							borderRadius: "36px",
-							height: "100%",
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "space-between",
-							color: "#1B2845",
-							padding: "5px 20px",
-							fontWeight: "600",
-							background:
-								"linear-gradient(154.04deg, #FFFFFF -27.56%, rgba(255, 255, 255, 0) 81.94%), radial-gradient(99.9% 225.32% at 82.94% 125%, #53CEF4 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(264.51deg, #B7FFDB 2.53%, #93E9BE 96.02%)",
-							cursor: "pointer",
-						}}
-					>
-						<img
+						</AccountComponents.SocialElementText>
+					</AccountComponents.SocialElementContainer>
+				</AccountComponents.SocialContainer>
+				<AccountComponents.ActionContainer>
+					<AccountComponents.TrophyCaseButton>
+						<AccountComponents.TrophyCaseImage
 							src={TrophyButton}
 							alt="Trophycase"
-							style={{ marginRight: "5px" }}
 						/>
 						<p>Trophycase</p>
-					</div>
-					<div
-						style={{
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "center",
-							borderRadius: "36px",
-							height: "100%",
-							color: "#93E9BE",
-							padding: "5px 20px",
-							fontWeight: "600",
-							backgroundColor: "rgba(60, 60, 67, 0.6)",
-							cursor: "pointer",
-						}}
-					>
+					</AccountComponents.TrophyCaseButton>
+					<AccountComponents.EditProfileButton>
 						<p>Edit profile</p>
-					</div>
-					<div
-						style={{
-							height: "100%",
-							width: "36px",
-							borderRadius: "50%",
-							backgroundColor: "rgba(60, 60, 67, 0.6)",
-							padding: "5px",
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "center",
-							cursor: "pointer",
-						}}
-					>
+					</AccountComponents.EditProfileButton>
+					<AccountComponents.ShareButton>
 						<img src={Share} alt="Share" />
-					</div>
-				</div>
+					</AccountComponents.ShareButton>
+				</AccountComponents.ActionContainer>
 			</div>
 
 			<div className="gallery">
-				<div style={{ marginBottom: "30px" }}>
-					<div
-						style={{
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "space-between",
-							width: "500px",
-							margin: "auto",
-							fontWeight: "600",
-						}}
-					>
+				<AccountComponents.GalleryNavContainer>
+					<AccountComponents.GalleryNav>
 						<NavEl name="Owned" active />
 						<NavEl name="Minted" />
 						<NavEl name="On sale" />
 						<NavEl name="Saved" />
-					</div>
-				</div>
-				<div
-					style={{
-						display: "flex",
-						justifyContent: "space-around",
-						flexWrap: "wrap",
-					}}
-				>
+					</AccountComponents.GalleryNav>
+				</AccountComponents.GalleryNavContainer>
+				<AccountComponents.GalleryElContainer>
 					<GalleryEl
 						name={"NFT Name"}
 						price={"Not for sale"}
@@ -354,7 +99,7 @@ const Account = () => {
 							}
 						/>
 					))}
-				</div>
+				</AccountComponents.GalleryElContainer>
 			</div>
 		</BaseScreen>
 	);

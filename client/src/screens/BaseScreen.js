@@ -1,16 +1,13 @@
-import styled from "styled-components";
 import Banner from "../components/Topbar";
-
-const Wrapper = styled.div`
-	height: calc(100vh - 82px);
-	overflow-y: auto;
-`;
+import BaseScreenComponents from "../styles/screens/BaseScreen";
 
 const BaseScreen = (props) => {
 	return (
 		<>
 			<Banner />
-			<Wrapper className="dk-wrapper">{props.children}</Wrapper>
+			<BaseScreenComponents.Wrapper className="dk-wrapper">
+				{props.children}
+			</BaseScreenComponents.Wrapper>
 		</>
 	);
 };
