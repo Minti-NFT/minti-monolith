@@ -17,7 +17,8 @@ function App() {
 				<Route exact path="/" component={BaseScreen} />
 				<Route path="/mint" component={Mint} />
 				<Route path="/connect" component={Connect} />
-				<Route path="/account" component={Account} />
+				<Route path="/account" exact component={Account} />
+				<Route path="/account/:address" component={Account} />
 				<Route path="/compose" component={Compose} />
 				<Route path="/case" component={BaseScreen} />
 				<Route path="/settings" component={BaseScreen} />

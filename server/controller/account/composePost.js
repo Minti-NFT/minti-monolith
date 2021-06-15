@@ -14,7 +14,7 @@ const compose = async (ownerId, postInfo) => {
 
 			owner.drafts.push(composedPost._id);
 			await owner.save();
-			return true;
+			return composedPost;
 		}
 	} catch (err) {
 		console.log(chalk.red(err));

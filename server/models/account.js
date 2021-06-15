@@ -17,6 +17,7 @@ const AccountSchema = new Schema({
 	username: { type: String },
 	socials: { type: [SocialSchema], default: [] },
 	drafts: { type: [mongoose.Types.ObjectId], default: [] },
+	createdAt: { type: Date, default: Date.now },
 });
 
 const AccountModel = mongoose.model("accounts", AccountSchema);

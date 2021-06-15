@@ -59,7 +59,7 @@ const components = {
 	Wrapper: styled.div`
 		width: 100%;
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
 		margin: 20px 0px;
 	`,

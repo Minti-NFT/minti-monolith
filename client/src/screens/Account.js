@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
 import BaseScreen from "./BaseScreen";
 
 import InstagramLogo from "../assets/Icons-svg/Instagram/IG-Light grey 2.svg";
@@ -13,7 +17,62 @@ import GalleryEl from "../components/Account/GalleryEl";
 
 import AccountComponents from "../styles/screens/Account";
 
+import connectMetamask from "../comms/wallet/metamask";
+
 const Account = () => {
+	const { address } = useParams();
+	const [account, setAccount] = useState({
+		address: address,
+		description:
+			"This user is currently not on Minti! If this is your address, please try signing in via the button on the top right or reaching out to our support team through Discord or our other social channels!",
+		username: "LurkingCreature",
+		_id: "000000000",
+	});
+	const [successfulAccount, setSuccessfulAccount] = useState(false);
+
+	useEffect(() => {
+		async function accountState() {
+			if (address) {
+				axios
+					.get("/findByAddress", {
+						params: {
+							address: address,
+						},
+					})
+					.then((res) => {
+						console.log(res.data);
+						if (res.data.success) {
+							setSuccessfulAccount(true);
+							setAccount(res.data.payload);
+						}
+					})
+					.catch((err) => {
+						setSuccessfulAccount(false);
+					});
+			} else {
+				const res = await connectMetamask();
+				setAccount(res);
+			}
+		}
+		accountState();
+	}, []);
+	/*const [loggedState, setLoggedState] = useState(null);
+
+	useEffect(() => {
+		async function isAuthed() {
+			const res = await connectMetamask();
+			setLoggedState(res);
+		}
+
+		isAuthed();
+	}, []);
+
+	useEffect(() => {
+		if (loggedState === false) {
+			window.location.href = "/connect";
+		}
+	}, [loggedState]);*/
+
 	return (
 		<BaseScreen>
 			<div className="info">
@@ -22,18 +81,29 @@ const Account = () => {
 					<AccountComponents.PPInner />
 				</AccountComponents.PPContainer>
 				<AccountComponents.Username>
-					NFTMaker
+					{account && account.username
+						? account.username
+						: "MintiMaker" +
+						  account._id.substring(account._id.length - 6)}
 				</AccountComponents.Username>
 				<AccountComponents.InfoContainer>
 					<AccountComponents.AddressContainer>
-						<p>0x97a57e504f8d...443b</p>
+						<p>
+							{account && account.address
+								? account.address.substring(0, 14) +
+								  "..." +
+								  account.address.substring(
+										account.address.length - 4
+								  )
+								: "0x0...null"}
+						</p>
 						<AccountComponents.CopyImage src={Copy} alt="copy" />
 					</AccountComponents.AddressContainer>
 				</AccountComponents.InfoContainer>
 				<AccountComponents.Description>
-					Short description/bio. Lorem ipsum dolor sit amet, consect
-					etur adipiscing elit. Amet lobortis sapien sl, venenatis
-					egestas.
+					{account && account.description
+						? account.description
+						: "Short description/bio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet lobortis sapien sl, venenatisegestas."}
 				</AccountComponents.Description>
 				<AccountComponents.SocialContainer>
 					<AccountComponents.SocialElementContainer>

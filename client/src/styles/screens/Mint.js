@@ -90,7 +90,10 @@ const components = {
 		height: 100%;
 		width: 45%;
 		border-radius: 20px;
-		border: 1px solid rgba(58, 58, 60, 1);
+		border: ${(props) =>
+			props.active
+				? "3px solid rgba(147, 233, 190, 1)"
+				: "1px solid rgba(58, 58, 60, 1)"};
 		text-align: center;
 		padding: 15px 0px;
 		cursor: pointer;

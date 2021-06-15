@@ -1,16 +1,41 @@
 require("dotenv").config();
 
 const express = require("express");
-const bodyParser = require("body-parser");
+const cors = require("cors");
+const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
+const cookieparser = require("cookie-parser");
+const session = require("express-session");
 const chalk = require("chalk");
+const cookieSession = require("cookie-session");
+const Sentry = require("@sentry/node");
+const Tracing = require("@sentry/tracing");
 
 const accountRouter = require("./routes/account");
 const listingRouter = require("./routes/listing");
 
+Sentry.init({
+	dsn:
+		"https://d3d8d0fe737a456f925cdd09f50ee449@o805740.ingest.sentry.io/5803279",
+	tracesSampleRate: 1.0,
+});
+
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(cors());
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json());
+app.use(cookieparser());
+app.use(
+	session({
+		secret: "Session Secret!",
+		saveUninitalized: true,
+		resave: false,
+		cookie: {
+			httpOnly: true,
+			maxAge: 24 * 3600 * 1000,
+		},
+	})
+); // change session secret
 
 mongoose
 	.connect("mongodb://localhost:27017/minti", {

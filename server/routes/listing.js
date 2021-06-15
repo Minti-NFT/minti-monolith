@@ -8,11 +8,12 @@ const getInfo = require("../controller/listing/getInfo");
 
 listingRouter.post("/create", async (req, res) => {
 	try {
-		const listing = await createListing(req.headers._id, req.body);
-		if (listing)
-			return res.status(200).send({ success: true, data: listing });
-
-		throw "";
+		if (req.session._id) {
+			const listing = await createListing(req.session._id, req.body);
+			if (listing)
+				return res.status(200).send({ success: true, data: listing });
+		}
+		return res.status(200).send({ success: false });
 	} catch (err) {
 		console.log(chalk.red(err));
 		return res.status(400).send({

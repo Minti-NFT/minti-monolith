@@ -1,0 +1,36 @@
+enum State {
+    SOLD
+    SELLING
+    BIDDABLE
+    OFFSALE
+}
+
+type Asset {
+        standard: String
+        id: Int
+		tokenId: String
+		tokenUri: String
+		contractAddress: String
+        state: State
+        owner: Account
+        occured: DateTime
+        owners: [Account]
+		history: [Log]
+	}
+}
+
+type Log {
+    occured: DateTime
+    heading: String
+    description: String
+    invoker: Account
+    recipient: Account
+}
+
+type Account {
+    address: String
+    account: Account
+    actions: [Log]
+}
+
+
